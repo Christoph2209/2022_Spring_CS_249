@@ -4,7 +4,7 @@ public class NPC {
     private int health;
     private int strength;
     private char relationship;
-
+    
     public NPC() {
         health = 100;
         strength = 50;
