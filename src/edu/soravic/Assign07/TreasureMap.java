@@ -1,10 +1,11 @@
 package edu.soravic.Assign07;
 import java.io.PrintWriter;
-import java.util.*;
+import java.io.File;
+import java.util.Scanner;
 
 public class TreasureMap extends CharImage{
-    protected int row;
-    protected int col;
+    int row;
+    int col;
 
     public TreasureMap(int rowCnt, int colCnt, char fillChar)
     {
@@ -40,8 +41,8 @@ public class TreasureMap extends CharImage{
             Scanner order = new Scanner(dirLine);
             String dir = order.next();
             int amount = order.nextInt();
-            int nRow=0
-            int nCol=0
+            int nRow=0;
+            int nCol=0;
             switch(dir){
                 case "north" : dir = "north";
                     nRow = row - amount;
@@ -59,46 +60,51 @@ public class TreasureMap extends CharImage{
             int maxCol = col + amount;
             for (int i = minRow; i <= maxRow; i++)
             {
-
+                for(int j = minCol; j <= maxCol; j++)
+                {
+                    setPos(i,j,'.');
+                }
             }
 
-            setPos(row, col, '.');
+            setCurRow(nRow);
+            setCurCol(nCol);
             order.close();
         }
         catch(Exception e)
         {
-            throw new TreasureMapException("YE CANNOT MOVE SO!", e);
+            new TreasureMapException("YE CANNOT MOVE SO!", e);
         }
     }
 
 
     public void loadInstructions(String filename) throws TreasureMapException{
         try{
-            Scanner file = new Scanner(filename);
-            while(file.hasNextLine())
+            
+            Scanner in = new Scanner(new File(filename));
+            while(in.hasNextLine())
             {
-                String a = file.nextLine();
+                String a = in.nextLine();
                 parseDirection(a);
             }
-            file.close();
+            in.close();
             setPos(row, col,'x');
         }
         catch(Exception e)
         {
-           clear();
-           throw new TreasureMapException("YE CANNOT READ THIS MAP!", e);
+            clear();
+            new TreasureMapException("YE CANNOT READ THIS MAP!", e);
         }
     }
 
     public void saveMap(String filename) throws TreasureMapException{
         try{
-            PrintWriter file = new PrintWriter(filename);
+            PrintWriter file = new PrintWriter(new File(filename));
             file.print(getMapString());
             file.close();
         }
         catch (Exception e)
         {
-            throw new TreasureMapException("SUCH TREASURE NEED BE SECRET!", e);
+            new TreasureMapException("SUCH TREASURE NEED BE SECRET!", e);
         }
     }
 
