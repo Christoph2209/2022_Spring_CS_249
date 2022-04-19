@@ -1,4 +1,4 @@
-package edu.soravic.Assign05;
+package edu.soravic.Assign07;
 
 public class CharImage {
     private int rowCnt;

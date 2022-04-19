@@ -1,6 +1,6 @@
-package edu.realemj.Assign07;
+package edu.soravic.Assign07;
 // NOTE: CHANGE realemj to YOUR SITNETID!!!
-import edu.realemj.Testing.GeneralTesting;
+import edu.soravic.Testing.GeneralTesting;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

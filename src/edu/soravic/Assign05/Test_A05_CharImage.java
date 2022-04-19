@@ -2,6 +2,8 @@ package edu.soravic.Assign05;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import edu.soravic.Assign07.CharImage;
+
 public class Test_A05_CharImage {
     
     @DataProvider(name="mapGen")

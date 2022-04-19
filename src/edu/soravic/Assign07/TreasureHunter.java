@@ -1,4 +1,4 @@
-package edu.realemj.Assign07;
+package edu.soravic.Assign07;
 // NOTE: CHANGE realemj to YOUR SITNETID!!!
 
 public class TreasureHunter {

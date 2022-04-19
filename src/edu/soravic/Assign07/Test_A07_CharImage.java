@@ -1,4 +1,4 @@
-package edu.realemj.Assign07;
+package edu.soravic.Assign07;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
