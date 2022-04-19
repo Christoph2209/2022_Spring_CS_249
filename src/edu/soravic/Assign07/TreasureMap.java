@@ -4,8 +4,8 @@ import java.io.File;
 import java.util.Scanner;
 
 public class TreasureMap extends CharImage{
-    int row;
-    int col;
+    private int row;
+    private int col;
 
     public TreasureMap(int rowCnt, int colCnt, char fillChar)
     {
@@ -27,12 +27,12 @@ public class TreasureMap extends CharImage{
         return col;
     }
 
-    public void setCurRow(int row){
-        this.row = row;
+    public void setCurRow(int nrow){
+        row = nrow;
     }
 
-    public void setCurCol(int col){
-        this.col = col;
+    public void setCurCol(int ncol){
+        col = ncol;
     }
 
     public void parseDirection(String dirLine) throws TreasureMapException
@@ -46,18 +46,23 @@ public class TreasureMap extends CharImage{
             switch(dir){
                 case "north" : dir = "north";
                     nRow = row - amount;
+                    break;
                 case "south" : dir = "south";
                     nRow = row + amount;
+                    break;
                 case "west" : dir = "west";
                     nCol = col - amount;
+                    break;
                 case "east" : dir = "east";
                     nCol = col + amount;
+                    break;
                 default: dir = "BAD COMMAND!";
+                    break;
             }
-            int minRow = row - amount;
-            int maxRow = row + amount;
-            int minCol = col - amount;
-            int maxCol = col + amount;
+            int minRow = row - nRow;
+            int maxRow = row + nRow;
+            int minCol = col - nCol;
+            int maxCol = col + nCol;
             for (int i = minRow; i <= maxRow; i++)
             {
                 for(int j = minCol; j <= maxCol; j++)
