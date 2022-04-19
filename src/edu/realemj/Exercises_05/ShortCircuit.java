@@ -25,6 +25,6 @@ public class ShortCircuit {
         }
 
         System.out.println(type + " " + name + " " + lastName);
-
+        input.close();
     }    
 }

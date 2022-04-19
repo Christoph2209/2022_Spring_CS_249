@@ -10,7 +10,7 @@ public class Wasteland {
         int bh = bob.getHealth();
         System.out.println(bh);
 
-        // Person <-- Human <-- NPC
+        //Person <-- Human <-- NPC
         //Person p = new NPC();
         //p = new Human();
         // LOTS OF CODE LATER...

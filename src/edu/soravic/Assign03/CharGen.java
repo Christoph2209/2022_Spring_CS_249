@@ -55,5 +55,7 @@ public class CharGen {
                     validName = false;
                 }
             }while(validName == true);
+            input.close();
         }
+
 }

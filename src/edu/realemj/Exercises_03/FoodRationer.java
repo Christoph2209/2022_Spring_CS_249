@@ -29,7 +29,7 @@ public class FoodRationer {
 
         // Example of type casting
         int x = (int)1.0;
-
+        
         // Converting from int to String via
         // String concatenation
         String numPeopleString = "PEOPLE CNT: " + numPeople;
@@ -44,7 +44,7 @@ public class FoodRationer {
 
         // Example of STDERR printout
         System.err.println("GO HOME!!!!");
-        
+        input.close();
         // Example of reading string chunks from Scanner
         //String first = input.next();
         //System.out.println("Before second...");

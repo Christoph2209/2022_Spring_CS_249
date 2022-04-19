@@ -25,7 +25,7 @@ public class L33tSpeak {
             String convertedString = sb.toString();
             System.out.println(convertedString);
         } while(line.length() != 0);
-
+        input.close();
     }
     
 }

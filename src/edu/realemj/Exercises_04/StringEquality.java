@@ -13,6 +13,7 @@ public class StringEquality {
         if(a.equals(b)) {
 
         }
+        input.close();
     }
     
 }

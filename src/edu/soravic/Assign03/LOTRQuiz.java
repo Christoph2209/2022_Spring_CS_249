@@ -28,5 +28,6 @@ public class LOTRQuiz {
             {
                     System.out.println("GOLLUM!");
             }
+            input.close();
         }
 }

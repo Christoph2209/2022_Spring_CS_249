@@ -12,6 +12,7 @@ public class MixingReads {
         System.out.println(s1);
         System.out.println(s2);
         System.out.println(s3);
+        input.close();
     }
     
 }

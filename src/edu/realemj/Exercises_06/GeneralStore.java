@@ -33,6 +33,7 @@ public class GeneralStore {
         } while(validItem);
 
         System.out.println("Thank you! Come again!");
+        input.close();
     }
     
 }

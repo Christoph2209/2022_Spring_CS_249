@@ -14,6 +14,6 @@ public class StringStats {
         char third = s.charAt(2);
         System.out.println("THIRD CHAR: " + third);
         System.out.println("SHOUTING: " + s.toUpperCase());
-
+        myInput.close();
     }    
 }

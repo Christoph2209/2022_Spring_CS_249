@@ -31,7 +31,7 @@ public class StringFormatting {
                           Mayberry, GA    10203
                         """;
         System.out.println(name_and_address);
-
+        input.close();
 
     }    
 }
