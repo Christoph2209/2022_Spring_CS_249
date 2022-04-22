@@ -1,11 +1,10 @@
 package edu.soravic.Assign07;
-import java.io.PrintWriter;
-import java.io.File;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class TreasureMap extends CharImage{
-    private int row;
-    private int col;
+    private int curRowCnt;
+    private int curColCnt;
 
     public TreasureMap(int rowCnt, int colCnt, char fillChar)
     {
@@ -14,104 +13,92 @@ public class TreasureMap extends CharImage{
 
     public void clear()
     {
-        row = 0;
-        col = 0;
+        curRowCnt = 0;
+        curColCnt = 0;
         super.clear();
     }
 
     public int getCurRow(){
-        return row;
+        return curRowCnt;
     }
 
     public int getCurCol(){
-        return col;
+        return curColCnt;
     }
 
     public void setCurRow(int nrow){
-        row = nrow;
+        curRowCnt = nrow;
     }
 
     public void setCurCol(int ncol){
-        col = ncol;
+        curColCnt = ncol;
     }
 
     public void parseDirection(String dirLine) throws TreasureMapException
     {
-        try{
-            Scanner order = new Scanner(dirLine);
-            String dir = order.next();
-            int amount = order.nextInt();
-            int nRow=0;
-            int nCol=0;
-            switch(dir){
-                case "north" : dir = "north";
-                    nRow = row - amount;
-                    break;
-                case "south" : dir = "south";
-                    nRow = row + amount;
-                    break;
-                case "west" : dir = "west";
-                    nCol = col - amount;
-                    break;
-                case "east" : dir = "east";
-                    nCol = col + amount;
-                    break;
-                default: dir = "BAD COMMAND!";
-                    break;
+        try {
+
+            Scanner input = new Scanner(dirLine);
+    
+            String direction = input.next();
+            int offset = input.nextInt();
+            int endRow = 0;
+            int endCol = 0;
+    
+            switch (direction) {
+                case "north":   endRow = curRowCnt - offset;
+                                break; 
+                case "south":   endRow = curRowCnt + offset;
+                                break;
+                case "west":    endCol = curColCnt - offset;
+                                break;
+                case "east":    endCol = curColCnt + offset;
+                                break;
+                default:        input.close();
+                throw new TreasureMapException("BAD COMMAND!");
+
             }
-            int minRow = row - nRow;
-            int maxRow = row + nRow;
-            int minCol = col - nCol;
-            int maxCol = col + nCol;
-            for (int i = minRow; i <= maxRow; i++)
-            {
-                for(int j = minCol; j <= maxCol; j++)
-                {
-                    setPos(i,j,'.');
+            input.close();
+            setCurRow(endRow);
+            setCurCol(endCol);
+            setPos(endRow, endCol, '.');
+            }
+            catch(Exception e) {
+                throw new TreasureMapException("YE CANNOT MOVE SO!");
+            }
+        }
+
+
+
+        public void loadInstructions(String filename) throws TreasureMapException {
+            try {
+                Scanner read = new Scanner(new File(filename));
+    
+                while (read.hasNextLine()) {
+                    String line = read.nextLine();
+                    parseDirection(line);
                 }
+            setPos(getCurRow(), getCurCol(), 'X');
+            read.close();
+        }
+            catch (Exception e) {
+                clear();
+                new TreasureMapException("YE CANNOT READ THIS MAP!", e);
             }
-
-            setCurRow(nRow);
-            setCurCol(nCol);
-            order.close();
         }
-        catch(Exception e)
-        {
-            new TreasureMapException("YE CANNOT MOVE SO!", e);
-        }
-    }
-
-
-    public void loadInstructions(String filename) throws TreasureMapException{
-        try{
-            
-            Scanner in = new Scanner(new File(filename));
-            while(in.hasNextLine())
-            {
-                String a = in.nextLine();
-                parseDirection(a);
+    
+        public void saveMap(String filename) throws TreasureMapException {
+            try {
+                PrintWriter writer = new PrintWriter(filename);
+                writer.print(getMapString());
+    
+                writer.close();
+    
             }
-            in.close();
-            setPos(row, col,'x');
+            catch (Exception e) {
+                new TreasureMapException("SUCH TREASURE NEEDS BE SECRET!", e);
+            }
         }
-        catch(Exception e)
-        {
-            clear();
-            new TreasureMapException("YE CANNOT READ THIS MAP!", e);
-        }
-    }
-
-    public void saveMap(String filename) throws TreasureMapException{
-        try{
-            PrintWriter file = new PrintWriter(new File(filename));
-            file.print(getMapString());
-            file.close();
-        }
-        catch (Exception e)
-        {
-            new TreasureMapException("SUCH TREASURE NEED BE SECRET!", e);
-        }
-    }
 
 }
 

@@ -31,7 +31,7 @@ public class TreasureHunter {
         catch(TreasureMapException e) {
             System.err.println(e.getMessage());
             // UNCOMMENT FOR DEBUGGING:
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }
